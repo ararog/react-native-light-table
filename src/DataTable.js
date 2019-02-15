@@ -22,13 +22,13 @@ export class DataTable extends React.Component {
   }
 
   shouldComponentUpdate(props) {
-    return this.props.dataSource !== props.dataSource;
+    return this.props.data !== props.data;
   }
 
   render() {
     const {
       style,
-      listViewStyle,
+      listStyle,
       renderHeader,
       data,
       refCallback,
@@ -41,7 +41,7 @@ export class DataTable extends React.Component {
         {typeof renderHeader === 'function' && renderHeader()}
         <FlatList
           {...flatListProps}
-          style={[defaultStyles.listview, listViewStyle]}
+          style={[defaultStyles.list, listStyle]}
           data={data}
           renderItem={renderRow}
         />
@@ -55,7 +55,7 @@ DataTable.propTypes = {
   listViewStyle: PropTypes.object,
   refCallback: PropTypes.func,
   renderHeader: PropTypes.func,
-  dataSource: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
   renderRow: PropTypes.func.isRequired,
 };
 DataTable.defaultProps = {
@@ -67,7 +67,7 @@ const defaultStyles = StyleSheet.create({
   verticalContainer: {
     flex: 1,
   },
-  listView: {
+  list: {
     flex: 1,
   },
 });
