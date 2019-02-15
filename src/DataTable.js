@@ -9,12 +9,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
+  FlatList,
   StyleSheet,
   View,
   ViewPropTypes,
 } from 'react-native';
-
-import { ListView } from 'realm/react-native';
 
 export class DataTable extends React.Component {
   constructor(props) {
@@ -31,21 +30,20 @@ export class DataTable extends React.Component {
       style,
       listViewStyle,
       renderHeader,
-      dataSource,
+      data,
       refCallback,
       renderRow,
-      ...listViewProps
+      ...flatListProps
     } = this.props;
 
     return (
       <View style={[defaultStyles.verticalContainer, style]}>
         {typeof renderHeader === 'function' && renderHeader()}
-        <ListView
-          {...listViewProps}
-          ref={refCallback}
+        <FlatList
+          {...flatListProps}
           style={[defaultStyles.listview, listViewStyle]}
-          dataSource={dataSource}
-          renderRow={renderRow}
+          data={data}
+          renderItem={renderRow}
         />
       </View>
     );
