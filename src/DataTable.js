@@ -31,18 +31,17 @@ export class DataTable extends React.Component {
       listStyle,
       renderHeader,
       data,
-      refCallback,
+      extraData,
       renderRow,
-      ...flatListProps
     } = this.props;
 
     return (
       <View style={[defaultStyles.verticalContainer, style]}>
         {typeof renderHeader === 'function' && renderHeader()}
         <FlatList
-          {...flatListProps}
           style={[defaultStyles.list, listStyle]}
           data={data}
+          extraData={extraData}
           renderItem={renderRow}
         />
       </View>
@@ -52,8 +51,8 @@ export class DataTable extends React.Component {
 
 DataTable.propTypes = {
   style: ViewPropTypes.style,
-  listViewStyle: PropTypes.object,
-  refCallback: PropTypes.func,
+  listStyle: PropTypes.object,
+  extraData: PropTypes.object,
   renderHeader: PropTypes.func,
   data: PropTypes.object.isRequired,
   renderRow: PropTypes.func.isRequired,
